@@ -1,27 +1,43 @@
+#include <ctype.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
         int size = 0;
-        int forma = 0;
+        char *forma;
+
         printf("Gerador de formatos\n");
-        printf("Informe o formato desejado");
-        printf("1 - Tabuleiro\n2 - Diamante\n");
-        scanf("%d", &forma);
-        if (forma < 1 || forma > 2) {
+        printf("Informe o formato desejado\n");
+        printf("Opções: tabuleiro ou diamante\n");
+
+        scanf("%s", forma);
+        // Padronizar string para letras minúsculas
+        for (size_t i = 0; i < strlen(forma); i++) {
+                forma[i] = tolower(forma[i]);
+        }
+
+        // Verificar se string corresponde a tabuleiro ou diamante
+        int is_tabuleiro = strcmp(forma, "tabuleiro") == 0;
+        int is_diamante = strcmp(forma, "diamante") == 0;
+
+	// Retornar valor de erro caso não corresponda
+        if (!is_tabuleiro && !is_diamante) {
                 printf("Insira uma forma válida!");
                 return -1;
         }
-        // Ler entrada do usuário como tamanho do tabuleiro
-        printf("Informe o tamanho do %s\n",
-               forma == 1 ? "tabuleiro" : "diamante");
+
+        // Ler entrada do usuário como tamanho do formato
+        printf("Informe o tamanho do %s\n", forma);
         scanf("%d", &size);
+        // Retornar valor de erro se valor for muito alto ou muito baixo
         if (size < 1 || size > 512) {
                 printf("Insira um valor válido!");
                 return -2;
         }
-        // Retornar valor de erro se valor for muito alto ou muito baixo
-        if (forma == 1) {
+
+        if (is_tabuleiro) {
                 // Imprimir valores do tabuleiro
                 for (int i = 0; i < size; i++) {
                         for (int j = 0; j < size; j++) {
@@ -30,7 +46,7 @@ int main() {
                         printf("\n");
                 }
         } else {
-		// Imprimir valores do diamante
+                // Imprimir valores do diamante
                 for (int i = 0; i < size; i++) {
                         int absolute = abs(size / 2 - i);
                         for (int j = 0; j < size; j++) {
@@ -40,5 +56,6 @@ int main() {
                         printf("\n");
                 }
         }
+
         return 0;
 }
