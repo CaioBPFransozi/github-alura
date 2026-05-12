@@ -5,7 +5,7 @@ int main() {
         int size = 0;
         int forma = 0;
         printf("Gerador de formatos\n");
-        printf("Informe o formato desejado");
+        printf("Informe o formato desejado\n");
         printf("1 - Tabuleiro\n2 - Diamante\n");
         scanf("%d", &forma);
         if (forma < 1 || forma > 2) {
@@ -30,6 +30,10 @@ int main() {
                         printf("\n");
                 }
         } else {
+		if (size % 2 == 0) {
+			printf("Tamanho deve ser ímpar para diamante!");
+			return -3;
+		}
 		// Imprimir valores do diamante
                 for (int i = 0; i < size; i++) {
                         int absolute = abs(size / 2 - i);
