@@ -4,8 +4,8 @@
 int main() {
         int size = 0;
         int forma = 0;
-        printf("Bem-vindo ao gerador de formatos!\n");
-        printf("Informe a forma desejada\n");
+        printf("Linha conflitante\n");
+        printf("Informe o formato desejado\n");
         printf("1 - Tabuleiro\n2 - Diamante\n");
         scanf("%d", &forma);
         if (forma < 1 || forma > 2) {
