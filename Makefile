@@ -1,11 +1,21 @@
-all: BIN_FOLDER main.o
-	gcc -o bin/bin build/main.o
+.PHONY: clean all
+
+OBJS = main.o
+BIN_FOLDER = bin
+BUILD_FOLDER = build
+SOURCE_FOLDER = src
+
+all: BIN_FOLDER $(OBJS)
+	gcc -o $(BIN_FOLDER)/bin $(BUILD_FOLDER)/main.o
 
 main.o: BUILD_FOLDER
-	gcc -o build/main.o -c src/main.c
+	gcc -o $(BUILD_FOLDER)/main.o -c $(SOURCE_FOLDER)/main.c
 
 BIN_FOLDER:
-	mkdir -p bin
+	mkdir -p $(BIN_FOLDER)
 
 BUILD_FOLDER:
-	mkdir -p build
+	mkdir -p $(BUILD_FOLDER)
+
+clean:
+	rm $(BUILD_FOLDER)/*
