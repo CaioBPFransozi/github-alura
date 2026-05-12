@@ -1,1 +1,1 @@
-Esse programa gera um formato de tabuleiro no terminal
+Esse programa gera um formato de tabuleiro ou diamante no terminal
