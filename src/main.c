@@ -46,7 +46,11 @@ int main() {
                         printf("\n");
                 }
         } else {
-                // Imprimir valores do diamante
+		if (size % 2 == 0) {
+			printf("Tamanho deve ser ímpar para diamante!");
+			return -3;
+		}
+		// Imprimir valores do diamante
                 for (int i = 0; i < size; i++) {
                         int absolute = abs(size / 2 - i);
                         for (int j = 0; j < size; j++) {
