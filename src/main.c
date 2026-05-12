@@ -4,7 +4,7 @@
 int main() {
         int size = 0;
         int forma = 0;
-        printf("Essa linha irá causar conflito");
+        printf("Linha conflitante\n");
         printf("Essa também");
         printf("1 - Tabuleiro\n2 - Diamante\n");
         scanf("%d", &forma);
