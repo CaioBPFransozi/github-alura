@@ -1,20 +1,14 @@
+#ifndef MAIN_GUARD
+#define MAIN_GUARD
+
 #include <ctype.h>
-#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "readline.h"
 
-char *readline() {
-	char *result = NULL;
-	size_t size = 0;
+#endif
 
-	if (getline(&result, &size, stdin) == -1) {
-		printf("Impossível ler string");
-		exit(-4);
-	};
-
-	return result;
-}
 
 int main() {
         int size = 0;

@@ -1,19 +1,24 @@
 .PHONY: clean all
 
-OBJS = main.o
+OBJS = main.o readline.o
+CFLAGS = -Wall -Werror
 BIN_FOLDER = bin
 RELEASE_FOLDER = $(BIN_FOLDER)/release
 BUILD_FOLDER = build
 SOURCE_FOLDER = src
 
 all: BIN_FOLDER $(OBJS)
-	gcc -o $(BIN_FOLDER)/bin $(BUILD_FOLDER)/main.o
+	gcc $(CFLAGS) -o $(BIN_FOLDER)/bin $(BUILD_FOLDER)/main.o $(BUILD_FOLDER)/readline.o
 
-release: RELEASE_FOLDER $(OBJS)
-	gcc -O2 -o $(RELEASE_FOLDER)/release $(BUILD_FOLDER)/main.o
+release: CFLAGS += -O2
+
+release: all
 
 main.o: BUILD_FOLDER
-	gcc -O2 -o $(BUILD_FOLDER)/main.o -c $(SOURCE_FOLDER)/main.c
+	gcc $(CFLAGS) -o $(BUILD_FOLDER)/main.o -c $(SOURCE_FOLDER)/main.c
+
+readline.o: BUILD_FOLDER
+	gcc $(CFLAGS) -o $(BUILD_FOLDER)/readline.o -c $(SOURCE_FOLDER)/readline.c
 
 BIN_FOLDER:
 	mkdir -p $(BIN_FOLDER)
