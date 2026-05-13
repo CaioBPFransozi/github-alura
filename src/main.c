@@ -9,7 +9,6 @@
 
 #endif
 
-
 int main() {
         int size = 0;
         char *forma;
@@ -19,14 +18,15 @@ int main() {
         printf("Opções: tabuleiro ou diamante\n");
 
 	forma = readline();
+	
         // Padronizar string para letras minúsculas
         for (size_t i = 0; i < strlen(forma); i++) {
                 forma[i] = tolower(forma[i]);
         }
 
         // Verificar se string corresponde a tabuleiro ou diamante
-        int is_tabuleiro = strcmp(forma, "tabuleiro\n") == 0;
-        int is_diamante = strcmp(forma, "diamante\n") == 0;
+        int is_tabuleiro = strcmp(forma, "tabuleiro") == 0;
+        int is_diamante = strcmp(forma, "diamante") == 0;
 
 	// Retornar valor de erro caso não corresponda
         if (!is_tabuleiro && !is_diamante) {

@@ -2,6 +2,7 @@
 #define READLINE_GUARD
 
 #include "readline.h"
+#include "trim.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,5 +17,5 @@ char *readline() {
 		exit(-4);
 	};
 
-	return result;
+	return trim(result);
 }
