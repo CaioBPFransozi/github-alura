@@ -4,6 +4,18 @@
 #include <stdlib.h>
 #include <string.h>
 
+char *readline() {
+	char *result = NULL;
+	size_t size = 0;
+
+	if (getline(&result, &size, stdin) == -1) {
+		printf("Impossível ler string");
+		exit(-4);
+	};
+
+	return result;
+}
+
 int main() {
         int size = 0;
         char *forma;
@@ -12,15 +24,15 @@ int main() {
         printf("Informe o formato desejado\n");
         printf("Opções: tabuleiro ou diamante\n");
 
-        scanf("%s", forma);
+	forma = readline();
         // Padronizar string para letras minúsculas
         for (size_t i = 0; i < strlen(forma); i++) {
                 forma[i] = tolower(forma[i]);
         }
 
         // Verificar se string corresponde a tabuleiro ou diamante
-        int is_tabuleiro = strcmp(forma, "tabuleiro") == 0;
-        int is_diamante = strcmp(forma, "diamante") == 0;
+        int is_tabuleiro = strcmp(forma, "tabuleiro\n") == 0;
+        int is_diamante = strcmp(forma, "diamante\n") == 0;
 
 	// Retornar valor de erro caso não corresponda
         if (!is_tabuleiro && !is_diamante) {
@@ -29,8 +41,11 @@ int main() {
         }
 
         // Ler entrada do usuário como tamanho do formato
-        printf("Informe o tamanho do %s\n", forma);
-        scanf("%d", &size);
+        printf("Informe o tamanho do %s", forma);
+        if (scanf("%d", &size) != 1) {
+		printf("Impossível ler tamanho!");
+		return -5;
+	};
         // Retornar valor de erro se valor for muito alto ou muito baixo
         if (size < 1 || size > 512) {
                 printf("Insira um valor válido!");
@@ -60,6 +75,7 @@ int main() {
                         printf("\n");
                 }
         }
+	free(forma);
 
         return 0;
 }
