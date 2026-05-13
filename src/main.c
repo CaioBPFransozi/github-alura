@@ -56,7 +56,7 @@ int main() {
                 // Imprimir valores do tabuleiro
                 for (int i = 0; i < size; i++) {
                         for (int j = 0; j < size; j++) {
-                                printf("%d ", (j + i % 2) % 2);
+                                printf("%c ", (j + i % 2) % 2 ? '$' : '.');
                         }
                         printf("\n");
                 }
@@ -69,8 +69,8 @@ int main() {
                 for (int i = 0; i < size; i++) {
                         int absolute = abs(size / 2 - i);
                         for (int j = 0; j < size; j++) {
-                                printf("%d ",
-                                       j >= absolute && j < size - absolute);
+                                printf("%c ",
+                                       j >= absolute && j < size - absolute ? '$' : ' ');
                         }
                         printf("\n");
                 }
